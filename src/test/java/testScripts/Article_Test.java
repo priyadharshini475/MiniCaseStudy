@@ -70,9 +70,9 @@ public class Article_Test {
 	public void newArticle() {
 	  extentTest=extentReports.createTest("New Article Test");
 		newArticlePage.newArticle("Unit Test","About Unit Test","Unit Testing Details","UnitTest");
-		String headerName=driver.findElement(By.xpath("//h1[contains(text(),'Unit Test')]")).getText();
-		System.out.println("New Article Title-"+headerName);
-	    Assert.assertEquals(headerName,"Unit Test");
+		String headName=driver.findElement(By.xpath("//h1[contains(text(),'Unit Test')]")).getText();
+		System.out.println("New Article Title-"+headName);
+	    Assert.assertEquals(headName,"Unit Test");
 	}
 	@Test(priority=3)
 	public void update_Article() {
