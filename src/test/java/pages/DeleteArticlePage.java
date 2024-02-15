@@ -13,6 +13,10 @@ public class DeleteArticlePage {
 	WebDriver driver;
 	@FindBy(xpath = "//button[@class='btn btn-sm'][1]")
 	WebElement deleteBtn;
+	
+	@FindBy(xpath="//div[contains(text(),'Articles not available.')]")
+	WebElement check;
+	
 	 public DeleteArticlePage(WebDriver driver) {
 		 this.driver=driver;
 	 		PageFactory.initElements(driver,this);
@@ -20,7 +24,12 @@ public class DeleteArticlePage {
 	 public void deleteArticle()
 		{
 			deleteBtn.click();
+			Alert alert=driver.switchTo().alert();
+			alert.accept();
 			
 		}
+	 public String deleteValidate() {
+		 return check.getText();
+	 }
 
 }

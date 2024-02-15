@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 public class LoginArticlePage {
 	@FindBy(xpath="//a[@href='#/login']")
     WebElement login_btn;
@@ -16,6 +17,8 @@ public class LoginArticlePage {
     WebElement password;
     @FindBy(xpath="//button[contains(text(),'Login')]")
     WebElement loginbtn;
+    @FindBy(xpath="//div[contains(text(),'Priyadharshini')]")
+    WebElement check;
     
     public LoginArticlePage(WebDriver driver) {
 		PageFactory.initElements(driver,this);
@@ -27,5 +30,9 @@ public class LoginArticlePage {
   	  password.sendKeys(strpassword);
   	  loginbtn.click();
   	}
+   public String checkValidLogin() {
+    	 return check.getText();
+    }
+    
 
 }

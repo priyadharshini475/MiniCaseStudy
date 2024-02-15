@@ -26,19 +26,25 @@ public class NewArticlePage {
 	    @FindBy(xpath="//h1[contains(text(),'Unit Test')]")
 	    WebElement headerBtn;
 	    
+	    @FindBy(xpath="//h1[contains(text(),'Unit Test')]")
+	    WebElement check;
+	    
 	   public NewArticlePage(WebDriver driver) {
 	 		PageFactory.initElements(driver,this);
 	 	}
-	   public void newArticle(String str1,String str2,String str3,String str4) {
+	   public void newArticle(String title,String about,String text,String tags) {
 		   newArticle_btn.click();
-		   articleTitle.sendKeys(str1); 
-		   articleAbout.sendKeys(str2);
-		   textArea.sendKeys(str3);
-		   enterTags.sendKeys(str4);
+		   articleTitle.sendKeys(title); 
+		   articleAbout.sendKeys(about);
+		   textArea.sendKeys(text);
+		   enterTags.sendKeys(tags);
 		   pub_article_btn.click();
-		  
+	   }  
+	   public String newArticleValidate() {
+		  return  check.getText();
+	   }
 		   
 		 
-		 }
+		 
 
 }

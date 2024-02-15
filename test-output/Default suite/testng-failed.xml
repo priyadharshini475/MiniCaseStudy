@@ -10,6 +10,9 @@
           <include name="finishExtent"/>
           <include name="setup"/>
           <include name="setupExtent"/>
+          <include name="delete_Article"/>
+          <include name="update_Article"/>
+          <include name="loginTest"/>
         </methods>
       </class> <!-- testScripts.Article_Test -->
     </classes>

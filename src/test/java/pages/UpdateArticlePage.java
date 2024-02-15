@@ -32,19 +32,24 @@ public class UpdateArticlePage {
 	     @FindBy(xpath="//h1[contains(text(),'Unit Test1..')]")
 	       WebElement headerCheckBtn;
 	     
+	     @FindBy(xpath="//h1[contains(text(),'Unit Test1..')]")
+	     WebElement check;
+	     
 	     public  UpdateArticlePage(WebDriver driver) {
 	    	 PageFactory.initElements(driver,this);
 	     }
 
-		public void update(String str1,String str2,String str3) {
+		public void update(String title,String about,String text) {
 		         editBtn.click();
 		    	 articleTitle.clear();
-		    	 articleTitle.sendKeys(str1);
+		    	 articleTitle.sendKeys(title);
 		    	 articleAbout.clear();
-		    	 articleAbout.sendKeys(str2);
+		    	 articleAbout.sendKeys(about);
 		    	 textArea.clear();
-		    	 textArea.sendKeys(str3);
+		    	 textArea.sendKeys(text);
 		    	 update_btn.click();
-		    				    	 
-			    	 }
+	 }
+		public String updateArticleValidate() {
+			return check.getText();
+		}
 }

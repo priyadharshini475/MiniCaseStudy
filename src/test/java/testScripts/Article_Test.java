@@ -62,7 +62,7 @@ public class Article_Test {
 	public void loginTest() {
 		extentTest=extentReports.createTest("Login Test");
 		loginPage.loginTest("priyadharshini475507@gmail.com","abcd1234");
-		String name=driver.findElement(By.xpath("//div[contains(text(),'Priyadharshini')]")).getText();
+	    String name=loginPage.checkValidLogin();
 		Assert.assertEquals(name,"Priyadharshini");
 		
 	}
@@ -70,26 +70,22 @@ public class Article_Test {
 	public void newArticle() {
 	  extentTest=extentReports.createTest("New Article Test");
 		newArticlePage.newArticle("Unit Test","About Unit Test","Unit Testing Details","UnitTest");
-		String headName=driver.findElement(By.xpath("//h1[contains(text(),'Unit Test')]")).getText();
-		System.out.println("New Article Title-"+headName);
-	    Assert.assertEquals(headName,"Unit Test");
+		String articleName=newArticlePage.newArticleValidate();
+	    Assert.assertEquals(articleName,"Unit Test");
 	}
 	@Test(priority=3)
 	public void update_Article() {
-		  extentTest=extentReports.createTest("Update Article Test");
+		extentTest=extentReports.createTest("Update Article Test");
 		updateArticle.update("Unit Test1..","About Unit Test1....","Unit Testing-1 Details");
-		String name=driver.findElement(By.xpath("//h1[contains(text(),'Unit Test1..')]")).getText();
-		 System.out.println("Updated Article Title- "+name);
-		 Assert.assertEquals(name,"Unit Test1..");
+        String upName=updateArticle.updateArticleValidate();
+		Assert.assertEquals(upName,"Unit Test1..");
 	}
 	@Test(priority=4)
 	public void delete_Article() {
 		extentTest=extentReports.createTest("Delete Article Test");
 		deleteArticle.deleteArticle();
-		Alert alert=driver.switchTo().alert();
-		Assert.assertEquals(alert.getText(), "Want to delete the article?");
-		alert.accept();
-
+	    String delText=deleteArticle.deleteValidate();
+        Assert.assertEquals(delText,"Articles not available.");
 	}
 	@AfterMethod
 	  public void teardown(ITestResult result) {
@@ -97,11 +93,10 @@ public class Article_Test {
 		  .assignCategory("Regression Test")
 		  .assignDevice(System.getProperty("os.name"))
 		  .assignDevice(System.getProperty("os.version"));
-		  
-		  if(ITestResult.FAILURE==result.getStatus()) {
+		   if(ITestResult.FAILURE==result.getStatus()) {
 			  extentTest.log(Status.FAIL,result.getThrowable().getMessage());
 			  String strPath=Utility.getScreenshotPath(driver);
-			   extentTest.fail(MediaEntityBuilder.createScreenCaptureFromPath(strPath).build());
+			  extentTest.fail(MediaEntityBuilder.createScreenCaptureFromPath(strPath).build());
 		  }
 	}
 	@AfterTest
