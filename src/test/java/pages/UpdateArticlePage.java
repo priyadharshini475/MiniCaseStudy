@@ -10,8 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-
-public class UpdateArticle {
+public class UpdateArticlePage {
 	 @FindBy(xpath="(//a[contains(text(),' Edit Article')])[1]")
 	    WebElement editBtn;
 	    
@@ -33,21 +32,19 @@ public class UpdateArticle {
 	     @FindBy(xpath="//h1[contains(text(),'Unit Test1..')]")
 	       WebElement headerCheckBtn;
 	     
-	     public  UpdateArticle(WebDriver driver) {
+	     public  UpdateArticlePage(WebDriver driver) {
 	    	 PageFactory.initElements(driver,this);
 	     }
 
-		public void update() {
+		public void update(String str1,String str2,String str3) {
 		         editBtn.click();
 		    	 articleTitle.clear();
-		    	 articleTitle.sendKeys("Unit Test1..");
+		    	 articleTitle.sendKeys(str1);
 		    	 articleAbout.clear();
-		    	 articleAbout.sendKeys("About Unit Test1....");
+		    	 articleAbout.sendKeys(str2);
 		    	 textArea.clear();
-		    	 textArea.sendKeys("Unit Testing-1 Details");
+		    	 textArea.sendKeys(str3);
 		    	 update_btn.click();
-		    	 System.out.println("Updated Article Title-"+headerCheckBtn.getText());
-			    Assert.assertEquals(headerCheckBtn.getText(),"Unit Test1..");
-			    	 
+		    				    	 
 			    	 }
- }
+}
