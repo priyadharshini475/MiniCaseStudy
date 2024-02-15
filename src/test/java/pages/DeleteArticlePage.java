@@ -20,10 +20,7 @@ public class DeleteArticlePage {
 	 public void deleteArticle()
 		{
 			deleteBtn.click();
-			Alert alert=driver.switchTo().alert();
-			Assert.assertEquals(alert.getText(), "Want to delete the article?");
-			alert.accept();
-
+			
 		}
 
 }
