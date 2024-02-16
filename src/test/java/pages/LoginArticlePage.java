@@ -25,14 +25,14 @@ public class LoginArticlePage {
     public LoginArticlePage(WebDriver driver) {
 		PageFactory.initElements(driver,this);
 	}
-    public void InValidLoginTest(String strmail,String strpassword) {
+    public void inValidLoginTest(String strmail,String strpassword) {
   	
   	  login_btn.click();
   	  email.sendKeys(strmail);
   	  password.sendKeys(strpassword);
   	  loginbtn.click();
   	}
-    public void ValidLoginTest(String strmail,String strpassword) {
+    public void validLoginTest(String strmail,String strpassword) {
       	  email.clear();
     	  email.sendKeys(strmail);
     	  password.clear();

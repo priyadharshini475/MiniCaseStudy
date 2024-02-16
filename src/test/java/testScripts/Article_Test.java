@@ -59,16 +59,16 @@ public class Article_Test {
 		TestBase.openUrl("https://conduit-realworld-example-app.fly.dev/");
 	}
    @Test(priority=1)
-    public void InValidLoginTest() {
+    public void inValidLoginTest() {
 	   extentTest=extentReports.createTest("InValidLogin Test");
-	  loginPage.InValidLoginTest("priyadharshini475507@gmail.com","abcd123");
+	  loginPage.inValidLoginTest("priyadharshini475507@gmail.com","abcd123");
 	  Assert.assertEquals(loginPage.checkInValidLogin(),"Wrong email/password combination");
 
    }
 	@Test(priority=2)
-	public void ValidLoginTest() {
+	public void validLoginTest() {
 		extentTest=extentReports.createTest("ValidLogin Test");
-		loginPage.ValidLoginTest("priyadharshini475507@gmail.com","abcd1234");
+		loginPage.validLoginTest("priyadharshini475507@gmail.com","abcd1234");
 		Assert.assertEquals(loginPage.checkValidLogin(),"Priyadharshini");
 		
 	}
