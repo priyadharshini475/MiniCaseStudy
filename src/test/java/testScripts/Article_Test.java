@@ -58,34 +58,45 @@ public class Article_Test {
 	public void setup() {
 		TestBase.openUrl("https://conduit-realworld-example-app.fly.dev/");
 	}
-	@Test(priority=1)
-	public void loginTest() {
-		extentTest=extentReports.createTest("Login Test");
-		loginPage.loginTest("priyadharshini475507@gmail.com","abcd1234");
-	    String name=loginPage.checkValidLogin();
-		Assert.assertEquals(name,"Priyadharshini");
+   @Test(priority=1)
+    public void InValidLoginTest() {
+	   extentTest=extentReports.createTest("InValidLogin Test");
+	  loginPage.InValidLoginTest("priyadharshini475507@gmail.com","abcd123");
+	  Assert.assertEquals(loginPage.checkInValidLogin(),"Wrong email/password combination");
+
+   }
+	@Test(priority=2)
+	public void ValidLoginTest() {
+		extentTest=extentReports.createTest("ValidLogin Test");
+		loginPage.ValidLoginTest("priyadharshini475507@gmail.com","abcd1234");
+		Assert.assertEquals(loginPage.checkValidLogin(),"Priyadharshini");
 		
 	}
-	@Test(priority=2)
-	public void newArticle() {
-	  extentTest=extentReports.createTest("New Article Test");
-		newArticlePage.newArticle("Unit Test","About Unit Test","Unit Testing Details","UnitTest");
-		String articleName=newArticlePage.newArticleValidate();
-	    Assert.assertEquals(articleName,"Unit Test");
-	}
 	@Test(priority=3)
-	public void update_Article() {
-		extentTest=extentReports.createTest("Update Article Test");
-		updateArticle.update("Unit Test1..","About Unit Test1....","Unit Testing-1 Details");
-        String upName=updateArticle.updateArticleValidate();
-		Assert.assertEquals(upName,"Unit Test1..");
+	public void duplicateArticleTest() {
+		 extentTest=extentReports.createTest("Duplicate Article Test");
+		newArticlePage.newArticle("Smoke Test","About Smoke Test","Smoke Testing Details","SmokeTest");
+		Assert.assertEquals(newArticlePage.duplicateArticleValidate(),"Title already exists..");
 	}
 	@Test(priority=4)
-	public void delete_Article() {
+	public void newArticleTest() {
+	  extentTest=extentReports.createTest("New Article Test");
+		newArticlePage.newArticle("Unit Test","About Unit Test","Unit Testing Details","UnitTest");
+	   Assert.assertEquals(newArticlePage.newArticleValidate(),"Unit Test");
+	}
+	@Test(priority=5)
+	public void update_ArticleTest() {
+		extentTest=extentReports.createTest("Update Article Test");
+		updateArticle.update("Unit Test1..","About Unit Test1....","Unit Testing-1 Details");
+       // String upName=updateArticle.updateArticleValidate();
+		Assert.assertEquals(updateArticle.updateArticleValidate(),"Unit Test1..");
+	}
+	@Test(priority=6)
+	public void delete_ArticleTest() {
 		extentTest=extentReports.createTest("Delete Article Test");
 		deleteArticle.deleteArticle();
-	    String delText=deleteArticle.deleteValidate();
-        Assert.assertEquals(delText,"Articles not available.");
+	    //String delText=deleteArticle.deleteValidate();
+        Assert.assertEquals(deleteArticle.deleteValidate(),"Articles not available.");
 	}
 	@AfterMethod
 	  public void teardown(ITestResult result) {

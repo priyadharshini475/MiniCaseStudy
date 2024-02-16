@@ -29,19 +29,37 @@ public class NewArticlePage {
 	    @FindBy(xpath="//h1[contains(text(),'Unit Test')]")
 	    WebElement check;
 	    
+	    @FindBy(xpath="//span[contains(text(),'Title already exists.. ')]")
+	    WebElement duplicate;
+	    
 	   public NewArticlePage(WebDriver driver) {
 	 		PageFactory.initElements(driver,this);
 	 	}
 	   public void newArticle(String title,String about,String text,String tags) {
 		   newArticle_btn.click();
+		   articleTitle.clear();
 		   articleTitle.sendKeys(title); 
+		   articleAbout.clear();
 		   articleAbout.sendKeys(about);
+		   textArea.clear();
 		   textArea.sendKeys(text);
+		   enterTags.clear();
 		   enterTags.sendKeys(tags);
 		   pub_article_btn.click();
 	   }  
 	   public String newArticleValidate() {
 		  return  check.getText();
+	   }
+//	   public void duplicateArticle(String title,String about,String text,String tags) {
+//		   newArticle_btn.click();
+//		   articleTitle.sendKeys(title); 
+//		   articleAbout.sendKeys(about);
+//		   textArea.sendKeys(text);
+//		   enterTags.sendKeys(tags);
+//		   pub_article_btn.click();
+//	   }
+	   public String duplicateArticleValidate() {
+		   return duplicate.getText();
 	   }
 		   
 		 
